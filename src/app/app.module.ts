@@ -7,19 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {TableModule} from 'primeng/table';
-import {CalendarModule} from 'primeng/calendar';
-import {SliderModule} from 'primeng/slider';
-import {DialogModule} from 'primeng/dialog';
-import {MultiSelectModule} from 'primeng/multiselect';
-import {ContextMenuModule} from 'primeng/contextmenu';
-import {ButtonModule} from 'primeng/button';
-import {ToastModule} from 'primeng/toast';
-import {InputTextModule} from 'primeng/inputtext';
-import {ProgressBarModule} from 'primeng/progressbar';
-import {DropdownModule} from 'primeng/dropdown';
-
-import { CustomerService } from './customerservice';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -29,21 +18,10 @@ import { CustomerService } from './customerservice';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    TableModule,
-    CalendarModule,
-		SliderModule,
-		DialogModule,
-		MultiSelectModule,
-		ContextMenuModule,
-		DropdownModule,
-		ButtonModule,
-		ToastModule,
-    InputTextModule,
-    ProgressBarModule,
-    HttpClientModule,
-    FormsModule
+    MatNativeDateModule,
+    ReactiveFormsModule
   ],
-  providers: [CustomerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

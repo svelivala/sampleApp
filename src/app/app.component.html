@@ -1,37 +1,94 @@
-<div class="container">
-  <div class="row justify-content-md-center mt-4">
-    <div class="col-6">
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Delivery Head</label>
-        <select class="form-select" aria-label="Default select example">
-            <option selected disabled>Please select licence</option>
-            <option value="1">Licence 1</option>
-            <option value="2">Licence 2</option>
-            <option value="3">Licence 3</option>
-        </select>
+<div class="bg-light" style="height: 100vh;">
+  <div class="container">
+    <div class="row">
+      <div class="row justify-content-md-center pt-4">
+        <div class="col-6">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Delivery Head</label>
+            <select class="form-select" aria-label="Default select example" (change)="getLicencesConsumed($event)">
+                <option selected disabled>Please Select Delivery Head</option>
+                <option value="sanjeeb">Sanjeeb</option>
+                <option value="subbu">Subbu</option>
+                <option value="rajesh">Rajesh</option>
+                <option value="john">John</option>
+                <option value="peter">Peter</option>
+            </select>
+          </div>
+          
+        </div>
       </div>
+      <div class="row justify-content-md-center pt-2">
+        <div class="col-6">
+          <table class="table table-info table-striped">
+            <thead>
+              <tr class="table-dark">
+                <th>Program Name</th>
+                <th>Licence</th>
+                <th>No of Licences</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>VS 2019 Prof</td>
+                <td>Microsoft</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>VS 2022 Prof</td>
+                <td>Microsoft</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>SQL Server 2014</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <div class="row mt-5" *ngIf="deliveryHead">
+      <table class="table table-success table-striped" matSort (matSortChange)="sortData($any($event),1)">
+        <caption> Licences consumed by <b class="text-capitalize">{{deliveryHead}}</b> team</caption>
+        <thead>
+          <tr class="table-dark">
+            <th mat-sort-header="name">Program Name</th>
+            <th mat-sort-header="consumed">No.of licenses consumed</th>
+            <th mat-sort-header="column1">Column1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let licence of selectedLicences" role='button' (click)="getEployees(licence)">
+            <td>{{licence.name}}</td>
+            <td>{{licence.consumed}}</td>
+            <td>{{licence.column1}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-  <div class="row mt-5">
-    <p-table [value]="products" responsiveLayout="scroll">
-      <ng-template pTemplate="header">
-          <tr>
-              <th>Code</th>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Quantity</th>
+    <div class="row mt-5" *ngIf="employees.length">
+      <table class="table table-danger table-striped" matSort (matSortChange)="sortData($any($event),0)">
+        <caption> Employees's under <b class="text-capitalize">{{deliveryHead}}</b> team</caption>
+        <thead>
+          <tr class="table-dark">
+            <th mat-sort-header="name">Employee Name</th>
+            <th mat-sort-header="machine">Machine Name</th>
+            <th mat-sort-header="email">Email Address</th>
+            <th mat-sort-header="manager">Manager</th>
           </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-product>
-          <tr>
-              <td>{{product.code}}</td>
-              <td>{{product.name}}</td>
-              <td>{{product.category}}</td>
-              <td>{{product.quantity}}</td>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{employee.name}}</td>
+            <td>{{employee.machine}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.manager}}</td>
           </tr>
-      </ng-template>
-  </p-table>
+        </tbody>
+      </table>
+    </div>
+    
   </div>
-  
 </div>
+
 <router-outlet></router-outlet>
